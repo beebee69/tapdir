@@ -1,26 +1,23 @@
 const mongoose = require('mongoose');
 
-
-
 const typeSchema = new mongoose.Schema({
     name:{
         type: String,
         max: 128,
-        required:true,
+        required: true,
     },
     code:{
         type:String,
         max:128,
-        required:true,
+        required: true,
     },
    
     status:{
         type: Number,
-       
     },
 },
 {
-    timestamps:true,
+    timestamps: true,
 });
 
 module.exports = mongoose.model('Type', typeSchema);

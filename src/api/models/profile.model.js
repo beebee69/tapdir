@@ -18,6 +18,7 @@ const profileSchema = new mongoose.Schema({
         type: String,
         max: 14,
         required: true,
+        trim: true,
     },
     address: {
         type: String,

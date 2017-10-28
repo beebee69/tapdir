@@ -12,7 +12,7 @@ const shopSchema = new mongoose.Schema({
 	},
 	locationId:{
 		type:String,
-		 
+		required: true,
 	},
 	userId:{
 		type:String,
