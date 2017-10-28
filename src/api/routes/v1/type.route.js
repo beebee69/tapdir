@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 
 router.route('/create')
-  .post(controller.create);
+  .post(validate(createType), controller.create);
 
 
 module.exports = router;

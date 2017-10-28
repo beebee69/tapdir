@@ -9,6 +9,6 @@ const {
 const router = express.Router();
 
 router.route('/create')
-    .post(controller.create);
+    .post(validate(createMedia), controller.create);
 
 module.exports = router;

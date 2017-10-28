@@ -4,13 +4,13 @@ const controller = require('../../controllers/thread.controller');
 
 const {
   createThread,
-} = require('../../validations/type.validation');
+} = require('../../validations/thread.validation');
 
 
 const router = express.Router();
 
 router.route('/create')
-  .post(controller.create);
+  .post(validate(createThread), controller.create);
 
 
 module.exports = router;

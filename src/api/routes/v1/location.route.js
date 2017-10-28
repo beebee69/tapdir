@@ -9,7 +9,7 @@ const {
 
 const router = express.Router();
 
-router.route('/create')
+router.route(validate(createLocation), '/create')
     .post(controller.create);
 
-module.exports = router;    
+module.exports = router;
