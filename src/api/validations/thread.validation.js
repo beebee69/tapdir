@@ -6,5 +6,15 @@ module.exports = {
         startedBy: Joi.string(),
         startedWith: Joi.string(),
         status: Joi.number(),
-    }),  
+    }),
+    updateThread: Joi.object().keys({
+        startedBy: Joi.string(),
+        startedWith: Joi.string(),
+        status: Joi.number(),
+    }),
+    // deleteThread: Joi.object().keys({
+    //     startedBy: Joi.string(),
+    //     startedWith: Joi.string(),
+    //     status: Joi.number(),
+    // })  
 };
