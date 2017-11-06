@@ -9,7 +9,18 @@ const {
 
 const router = express.Router();
 
-router.route(validate(createLocation), '/create')
-    .post(controller.create);
+router.route('/create')
+    .post(validate(createLocation), controller.create);
+    router.route('/index')
+    .get(controller.index);
 
+router.route('/view/:id')
+    .get(controller.view);
+
+router.route('/update/:id')
+    .put(controller.update);
+
+router.route('/delete/:id')
+    .delete(controller.delete);
+    
 module.exports = router;    

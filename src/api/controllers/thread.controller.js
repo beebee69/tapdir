@@ -9,41 +9,96 @@ exports.create = async(req, res, next) => {
     try {
         const thread = new Thread(req.body);
         const savedThread = await thread.save();
-        res.httpStatus(httpStatus.CREATED);
-        return res.json({savedThread, success: true});
+        res.status(httpStatus.CREATED);
+        return res.json({
+            success: true,
+            savedThread, 
+        });
     } catch(error){
-        return res.json({status: false, error});
+        return res.json({
+            status: false, 
+            error
+        });
     }
 }
 
+/**
+ * View Thread
+ */
+exports.view = async(req, res, next) => {
+	try {
+		const Thread = await Thread.findById(req.params.id);
+		res.status(httpStatus.OK);
+		return res.json({
+			success: true,
+			data: Thread,
+		});
+	}	catch (error) {
+		res.json( {
+			error
+		});
+	}
+}
+
+/**
+ * Create Indexes
+ */
+exports.index = async(req, res, next) => {
+    try{
+        const Threads = await Thread.find();
+        // res.hsttpStatus(httpStatus.OK);
+        res.status(httpStatus.OK);
+        return res.json({
+            success: true,
+            data: Threads,
+        })
+    } catch(error){
+        res.json({
+            success: false,
+            error,
+        })
+    
+    }
+}
+
+/**
+ * Thread Update
+ */
 exports.update = async(req, res, next) => {
-    try {
-        const thread = Thread.findById(req.params.id);
-        const savedThread = await thread.update();
-        res.httpStatus(httpStatus.UPDATED);
-        return res.json({savedThread, success: true});
+    try{
+        const Thread = await Thread.findById(req.params.id);
+        const update = await Thread.update({_id: req.params.id}, req.body);
+        res.status(httpStatus.OK);
+        
+        return res.json({
+            success: true,
+            message: 'Thread Updated',
+
+        });
     } catch(error){
-        return res.json({status: false, error});
+        return res.json({
+            success: false,
+            error,
+        });
     }
 }
 
-// exports.delete = async(req, res, next) => {
-//     try {
-//         const thread = Thread.findById(req.params.id);
-//         const isDeleted = await thread.delete();
-//         res.httpStatus(httpStatus.UPDATED);
-//         return res.json({isDeleted, success: true});
-//     } catch(error){
-//         return res.json({status: false, error});
-//     }
-// }
+/**
+ * Thread Delete
+ */
+exports.delete = async(req, res, next) => {
+    try{
+        const Thread = await Thread.remove(req.params.id);
 
-// exports.read = async(req, res, next) => {
-//     try {
-//         const thread = Thread.findById(req.params.id);
-//         res.httpStatus(httpStatus.READ);
-//         return res.json({thread, success: true});
-//     } catch(error){
-//         return res.json({status: false, error});
-//     }
-// }
+        return res.json({
+            success: true,
+            message: 'Thread Deleted',
+        })
+    } catch(error){
+        res.status(httpStatus.UNPROCESSABLE_ENTITY);
+        res.json({
+            success: false,
+            error,
+        })
+    }
+}

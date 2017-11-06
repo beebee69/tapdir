@@ -13,5 +13,16 @@ const router = express.Router();
 router.route('/create')
   .post(validate(createType), controller.create);
 
+router.route('/index')
+  .get(controller.index);
+
+router.route('/view/:id')
+  .get(controller.view);
+
+router.route('/update/:id')
+  .put(controller.update);
+
+router.route('/delete/:id')
+  .delete(controller.delete);
 
 module.exports = router;
