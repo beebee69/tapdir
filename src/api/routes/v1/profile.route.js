@@ -9,7 +9,7 @@ const {
 const router = express.Router();
 
 router.route('/create')
-    .post(controller.create);
+    .post(validate(createProfile), controller.create);
 
 router.route('/index')
     .get(controller.index);

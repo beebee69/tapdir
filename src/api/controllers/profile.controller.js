@@ -7,12 +7,14 @@ const Profile = require('../models/profile.model');
 
 exports.create = async(req, res, next) => {
     try {
-        const profile = new Profile(req.body);
+        
+        const profile = await (new Profile(req.body));
         const savedProfile = await profile.save();
-        res.status(httpStatus.CREATED);
+        // res.status(httpStatus.CREATED);
         return res.json({
 			success: true,
-			message: 'Profile created',
+            message: 'Profile created',
+            data: savedProfile,
 		});
     } catch(error){
         return res.json(error);
